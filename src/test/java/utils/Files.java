@@ -3,11 +3,15 @@ package utils;
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -81,5 +85,17 @@ public class Files {
         }
 
         return result;
+    }
+
+    public static WordExtractor readDocFromPath(String path) throws IOException {
+        FileInputStream fis = new FileInputStream(path);
+        HWPFDocument doc = new HWPFDocument(fis);
+        return new WordExtractor(doc);
+    }
+
+    public static XWPFWordExtractor readDocxFromPath(String path) throws IOException {
+        FileInputStream stream = new FileInputStream(path);
+        XWPFDocument document = new XWPFDocument(stream);
+        return new XWPFWordExtractor(document);
     }
 }

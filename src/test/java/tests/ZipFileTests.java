@@ -18,23 +18,9 @@ public class ZipFileTests {
         String unzipFolderPath = "./src/test/resources/files/unzip";
         String zipPassword = "";
         String unzipTxtFilePath = "./src/test/resources/files/unzip/1.txt";
-        String expectedData = "hello qa.guru students!";
+        String expectedData = "test line";
 
         unzip(zipFilePath, unzipFolderPath, zipPassword);
-
-        String actualData = readTextFromPath(unzipTxtFilePath);
-
-        assertThat(actualData, containsString(expectedData));
-    }
-
-    @Test
-    void zipTest() throws IOException, ZipException {
-        String zipFilePath = "./src/test/resources/files/1.zip";
-        String unzipFolderPath = "./src/test/resources/files/unzip";
-        String unzipTxtFilePath = "./src/test/resources/files/unzip/1.txt";
-        String expectedData = "hello qa.guru students!";
-
-        unzip(zipFilePath, unzipFolderPath);
 
         String actualData = readTextFromPath(unzipTxtFilePath);
 

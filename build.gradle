@@ -1,27 +1,40 @@
 plugins {
-    id 'java-library'
+    id 'java'
+    id 'idea'
+    id 'io.franzbecker.gradle-lombok' version '4.0.0'
+}
+
+def selenideVersion = "5.20.1",
+    junitVersion = "5.7.1"
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = 11
+    targetCompatibility = 11
 }
 
 repositories {
     mavenCentral()
 }
 
-def selenideVersion = "5.20.1",
-    junitVersion = "5.7.1"
-
 dependencies {
-    testImplementation (
+    testImplementation(
             "com.codeborne:selenide:$selenideVersion",
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion",
+            "org.hamcrest:hamcrest-all:1.3",
+
+            //libs for files
             "com.codeborne:pdf-test:1.5.1",
             "com.codeborne:xls-test:1.4.3",
             "net.lingala.zip4j:zip4j:1.3.2",
-            "org.hamcrest:hamcrest-all:1.3",
-            "org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-}
+            "org.apache.poi:poi:5.0.0",
+            "org.apache.poi:poi-scratchpad:5.0.0",
+            "org.apache.poi:poi-ooxml:5.0.0",
+            "org.apache.poi:poi-ooxml-full:5.0.0",
+            "commons-codec:commons-codec:1.15")
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion",
+            "org.slf4j:slf4j-simple:1.7.30")
 }
 
 test {
