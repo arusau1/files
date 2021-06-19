@@ -1,2 +1,1 @@
-hello qa.guru students!
-some text here
+test line

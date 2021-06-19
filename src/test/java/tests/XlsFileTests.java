@@ -16,7 +16,7 @@ public class XlsFileTests {
     @Test
     void xlsSimpleTest() throws IOException {
         String xlsFilePath = "./src/test/resources/files/1.xls";
-        String expectedData = "hello qa.guru students!";
+        String expectedData = "test line";
 
         XLS xls = getXls(xlsFilePath);
         assertThat(xls, XLS.containsText(expectedData));
@@ -25,7 +25,7 @@ public class XlsFileTests {
     @Test
     void xlsCellTest() throws IOException {
         String xlsFilePath = "./src/test/resources/files/1.xls";
-        String expectedData = "hello qa.guru students!";
+        String expectedData = "test line";
 
         XLS xls = getXls(xlsFilePath);
         String actualData = xls.excel.getSheetAt(0).getRow(3).getCell(1).toString();
@@ -35,7 +35,7 @@ public class XlsFileTests {
     @Test
     void xlsxTest() {
         String xlsFilePath = "./src/test/resources/files/1.xlsx";
-        String expectedData = "hello qa.guru students!";
+        String expectedData = "test line";
 
         String actualData = readXlsxFromPath(xlsFilePath);
         assertThat(actualData, containsString(expectedData));
